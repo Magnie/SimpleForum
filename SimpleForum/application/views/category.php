@@ -60,6 +60,21 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
+                                        <?php echo validation_errors(); ?>
+                                        <?php echo form_open('/forum/create/'.$category_id) ?>
+                                            <div class="form-group has-feedback">
+                                                <label class="control-label" for="newPostTitle">New Thread</label><br />
+                                                <input type="text" name="newPostTitle" id="newPostTitle" placeholder="Thread title here.." /><br />
+                                                
+                                                <label class="control-label" for="newPostText">New Post</label>
+                                                <textarea class="form-control" name="newPostText" id="newPostText">Type your post here.</textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-default">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
                                         <ul class="pager">
                                             <li>
                                                 <a href="#">←  Prev</a>
