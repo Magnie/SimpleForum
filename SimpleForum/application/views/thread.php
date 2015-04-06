@@ -1,3 +1,4 @@
+<?php $url = base_url().'index.php/'; ?>
         <div class="section">
             <div class="container">
                 <div class="row">
@@ -6,7 +7,7 @@
                             <?php
                             echo '
                             <li>
-                                <a href="../category/'.$category->id.'">'.$category->name.'</a>
+                                <a href="'.$url.'forum/category/'.$category->id.'">'.$category->name.'</a>
                             </li>';
                             ?>
                             <li class="active"><?php echo $thread->title ?></li>
@@ -30,10 +31,14 @@
                         ?>
                     </div>
                 </div>
+                <?php
+                if ($required_type) {
+                    echo '
                 <div class="row">
-                    <div class="col-md-12">
-                        <?php echo validation_errors(); ?>
-                        <?php echo form_open('/forum/post/'.$thread_id) ?>
+                    <div class="col-md-12">';
+                        echo validation_errors();
+                        echo form_open($url.'forum/post/'.$thread_id);
+                        echo '
                             <div class="form-group has-feedback">
                                 <label class="control-label" for="newPostText">New Post</label>
                                 <textarea class="form-control" name="newPostText">Type your post here.</textarea>
@@ -42,6 +47,8 @@
                             <button type="submit" class="btn btn-default">Submit</button>
                         </form>
                     </div>
-                </div>
+                </div>';
+                }
+                ?>
             </div>
         </div>

@@ -26,12 +26,17 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active">
-                            <a href="#">Home</a>
-                        </li>
-                        <li>
-                            <a href="#">Account</a>
-                        </li>
+                        <?php
+                        if (!isset($menu)) { $menu['Home'] = base_url().'index.php/forum/category'; }
+                        
+                        reset($menu);
+                        while (list($name, $url) = each($menu)) {
+                            echo '
+                            <li>
+                                <a href="'.$url.'">'.$name.'</a>
+                            </li>';
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>

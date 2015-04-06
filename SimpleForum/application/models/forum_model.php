@@ -53,8 +53,8 @@ class Forum_model extends CI_Model {
             'title' => $title
         );
         $query = $this->db->insert('sf_topics', $data);
-        $query = $this->get_threads($category, 0)[0];
-        return $query;
+        $query = $this->get_threads($category, 0);
+        return $query[0];
     }
     
     public function get_posts($thread, $page) {
@@ -73,5 +73,30 @@ class Forum_model extends CI_Model {
             'post' => $text
         );
         $this->db->insert('sf_posts', $data);
+    }
+    
+    public function check_login($userEmail, $userPass) {
+        // Check if the details given are correct.
+        $data['username'] = $userEmail;
+        $data['passhash'] = hash("sha256", $userPass);
+        $query = $this->db->get_where('sf_accounts', $data, 1)->result();
+        
+        if (!$query) {
+            $query = array(null);
+        }
+        return $query[0];
+    }
+    
+    public function create_login($userEmail, $userPass, $userName) {
+        // Check if the details given are correct.
+        $data['username'] = $userEmail;
+        $query = $this->db->get_where('sf_accounts', $data, 1)->result();
+        if (!$query) {
+            $data['passhash'] = hash("sha256", $userPass);
+            $data['display'] = $userName;
+            $this->db->insert('sf_accounts', $data);
+            return TRUE;
+        }
+        return FALSE;
     }
 }
