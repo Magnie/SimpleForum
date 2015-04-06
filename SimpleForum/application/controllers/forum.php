@@ -14,7 +14,7 @@ class Forum extends CI_Controller {
     public function index() {
         // Useless home page. Could be used for news or something.
         // Uncomment below to just redirect to the home category.
-        //redirect('/forum/category/0');
+        redirect('/forum/category/0');
         $this->load->library('session');
         
         // Render the page.

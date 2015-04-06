@@ -39,7 +39,8 @@
 */
 
 $route['assets/(:any)'] = 'assets/$1';
-$route['default_controller'] = "welcome";
+$route['forum/$1'] = 'forum/$1';
+$route['default_controller'] = "forum";
 $route['404_override'] = '';
 
 
